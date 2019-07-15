@@ -3,7 +3,7 @@ version: 2.1
 executors:
   docker-publisher:
     environment:
-      IMAGE_NAME: cloudreach/sceptre
+      IMAGE_NAME: cloudreach/sceptre-cli
     docker:
       - image: circleci/buildpack-deps:stretch
 
@@ -204,24 +204,6 @@ workflows:
           requires:
             - build
             - lint-and-unit-tests
-
-      - deploy-docs-branch:
-          context: sceptre-core
-          requires:
-            - lint-and-unit-tests
-          filters:
-            branches:
-              only: master
-
-      - deploy-docs-tag:
-          context: sceptre-core
-          requires:
-            - lint-and-unit-tests
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
 
       - deploy-pypi-approval:
           context: sceptre-core
