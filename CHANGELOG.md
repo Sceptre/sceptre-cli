@@ -4,6 +4,8 @@ Categories: Added, Removed, Changed, Fixed, Nonfunctional, Deprecated
 
 ## Unreleased
 
+- Remove sceptre core from package
+
 ## 2.1.5 (2019.06.28)
 
 ### Fixed

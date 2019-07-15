@@ -1,54 +1,19 @@
 # Sceptre
 
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre&metric=bugs)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre&metric=coverage)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre&metric=alert_status)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre&metric=security_rating)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre&metric=sqale_index)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre-cli&metric=bugs)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre-cli)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre-cli&metric=coverage)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre-cli)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre-cli&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre-cli)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre-cli&metric=alert_status)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre-cli)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre-cli&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre-cli)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre-cli&metric=security_rating)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre-cli)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre-cli&metric=sqale_index)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre-cli)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Sceptre_sceptre-cli&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=Sceptre_sceptre-cli)
 ![image](https://circleci.com/gh/Sceptre/sceptre.png?style=shield)
 ![image](https://badge.fury.io/py/sceptre.svg)
 
-# About
-
-Sceptre is a tool to drive
-[AWS CloudFormation](https://aws.amazon.com/cloudformation). It automates the
-mundane, repetitive and error-prone tasks, enabling you to concentrate on
-building better infrastructure.
-
-# Features
-
-- Code reuse by separating a Stack's template and its configuration
-- Support for templates written in JSON, YAML, Jinja2 or Python DSLs such as
-  Troposphere
-- Dependency resolution by passing of Stack outputs to parameters of dependent
-  Stacks
-- Stack Group support by bundling related Stacks into logical groups (e.g. dev
-  and prod)
-- Stack Group-level commands, such as creating multiple Stacks with a single
-  command
-- Fast, highly parallelised builds
-- Built in support for working with Stacks in multiple AWS accounts and regions
-- Infrastructure visibility with meta-operations such as Stack querying
-  protection
-- Support for inserting dynamic values in templates via customisable Resolvers
-- Support for running arbitrary code as Hooks before/after Stack builds
-
-# Benefits
-
-- Utilises cloud-native Infrastructure as Code engines (CloudFormation)
-- You do not need to manage state
-- Simple templates using popular templating syntax - Yaml & Jinja
-- Powerful flexibility using a mature programming language - Python
-- Easy to integrate as part of a CI/CD pipeline by using Hooks
-- Simple CLI and API
-- Unopinionated - Sceptre does not force a specific project structure
-
 # Install
 
-`$ pip install sceptre`
+`$ pip install sceptre-cli`
 
 More information on installing sceptre can be found in our
 [Installation Guide](https://sceptre.cloudreach.com/latest/docs/install.html)
@@ -80,18 +45,6 @@ you can execute sceptre commands - useful for development.
 If you have any other environment variables in your non-docker shell you will
 need to pass these in on the Docker CLI using the `-e` flag. See Docker
 documentation on how to achieve this.
-
-# Migrate v1 to v2
-
-We have tried to make the migration to Sceptre v2 as simple as possible. For
-information about how to migration your v1 project please see our
-[Migration Guide](https://github.com/sceptre/project/wiki/Migration-Guide:-V1-to-V2)
-
-# V1 End of Life Notice
-
-Support for Version 1 will
-[end on June 1 2019](https://github.com/sceptre/sceptre/issues/593). For new
-projects we recommend using Version 2.
 
 # Example
 
@@ -205,10 +158,6 @@ In this project `staging/eu/stack.yaml` has a dependency on the output of
 Sceptre will resolve all of it's dependencies, including `dev/users/iam.yaml`,
 before attempting to create the Stack.
 
-## Usage
-
-Sceptre can be used from the CLI, or imported as a Python package.
-
 ## CLI
 
 ```
@@ -242,28 +191,6 @@ Commands:
   status         Print status of stack or stack_group.
   update         Update a stack.
   validate       Validates the template.
-```
-
-## Python
-
-Using Sceptre as a Python module is very straightforward. You need to create a
-SceptreContext, which tells Sceptre where your project path is and which path
-you want to execute on, we call this the "command path".
-
-After you have created a SceptreContext you need to pass this into a
-SceptrePlan. On instantiation the SceptrePlan will handle all the required steps
-to make sure the action you wish to take on the command path are resolved.
-
-After you have instantiated a SceptrePlan you can access all the actions you can
-take on a Stack, such as `validate()`, `launch()`, `list()` and `delete()`.
-
-```python
-from sceptre.context import SceptreContext
-from sceptre.plan.plan import SceptrePlan
-
-context = SceptreContext("/path/to/project", "command_path")
-plan = SceptrePlan(context)
-plan.launch()
 ```
 
 Full API reference documentation can be found in the
