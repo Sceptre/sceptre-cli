@@ -7,28 +7,6 @@ executors:
     docker:
       - image: circleci/buildpack-deps:stretch
 
-aliases:
-  - &docs-job
-    docker:
-      - image: cloudreach/sceptre-circleci:0.4
-        environment:
-          REPOSITORY_PATH: '/home/circleci/docs'
-          DEPLOYMENT_GIT_SSH: 'git@github.com:Sceptre/sceptre.github.io.git'
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - '80:24:c0:40:28:36:f1:80:7f:fd:15:c3:09:cf:86:fc'
-      - attach_workspace:
-          at: /home/circleci
-      - run:
-          name: 'Build and deploy docs'
-          command: |
-            chmod +x .circleci/add-known-hosts.sh
-            ./.circleci/add-known-hosts.sh
-            . ./venv/bin/activate
-            chmod +x .circleci/github-pages.sh
-            ./.circleci/github-pages.sh
-
 jobs:
   build:
     docker:
@@ -152,10 +130,6 @@ jobs:
           root: .
           paths:
             - ./image.tar
-
-  deploy-docs-branch: *docs-job
-
-  deploy-docs-tag: *docs-job
 
   deploy-pypi:
     docker:
