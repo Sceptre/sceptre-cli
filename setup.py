@@ -16,7 +16,7 @@ install_requirements = [
     "packaging==16.8",
     "six>=1.11.0,<2.0.0",
     "PyYaml>=5.1,<6.0",
-    "sceptre-core @ git+https://github.com/Sceptre/sceptre-core.git@master"
+    "sceptre-core==0.0.1"
 ]
 
 test_requirements = [
