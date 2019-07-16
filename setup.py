@@ -16,7 +16,7 @@ install_requirements = [
     "packaging==16.8",
     "six>=1.11.0,<2.0.0",
     "PyYaml>=5.1,<6.0",
-    "sceptre-core==0.0.1",
+    "sceptre-core<0.1.0",
     "sceptre-aws-stackoutput-resolver==1.0.0",
     "sceptre-aws-stackoutput-external-resolver==1.0.0",
     "sceptre-environment-variable-resolver==1.0.0",

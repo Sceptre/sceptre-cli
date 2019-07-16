@@ -1,7 +1,7 @@
 click==7.0
 colorama==0.3.9
 PyYaml>=5.1,<6.0
-sceptre-core==0.0.1
+sceptre-core<0.1.0
 sceptre-aws-stackoutput-resolver==1.0.0
 sceptre-aws-stackoutput-external-resolver==1.0.0
 sceptre-environment-variable-resolver==1.0.0
